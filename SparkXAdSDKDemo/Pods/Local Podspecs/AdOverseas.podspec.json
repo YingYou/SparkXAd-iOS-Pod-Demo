@@ -1,0 +1,43 @@
+{
+  "name": "AdOverseas",
+  "version": "1.0.0",
+  "summary": "广告sdk",
+  "description": "这是一款聚合广告sdk",
+  "homepage": "http://gitlab.sparkxmarketing.com/sparkxadsdk/sparkxadsdkios/adoverseas.git",
+  "license": {
+    "type": "Copyright",
+    "text": "yangwei"
+  },
+  "authors": {
+    "yangwei": "yangwei"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "http://gitlab.sparkxmarketing.com/sparkxadsdk/sparkxadsdkios/adoverseas.git",
+    "tag": "1.0.0"
+  },
+  "dependencies": {
+    "FBAudienceNetwork": [
+
+    ]
+  },
+  "requires_arc": true,
+  "xcconfig": {
+    "OTHER_LDFLAGS": "-ObjC"
+  },
+  "subspecs": [
+    {
+      "name": "Google",
+      "vendored_frameworks": [
+        "Google/GoogleAppMeasurement.xcframework",
+        "Google/GoogleMobileAds.xcframework",
+        "Google/GoogleUtilities.xcframework",
+        "Google/nanopb.xcframework",
+        "Google/PromisesObjC.xcframework",
+        "Google/UserMessagingPlatform.xcframework"
+      ]
+    }
+  ]
+}
