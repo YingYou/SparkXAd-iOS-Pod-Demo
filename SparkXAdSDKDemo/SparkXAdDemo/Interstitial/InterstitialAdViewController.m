@@ -94,6 +94,7 @@
 /// Tells the delegate an ad request failed.
 - (void)didFailToReceiveAdWithError:(SparkXAdInterstitialAd *)interstitialAd error:(NSError *)error {
     self.statusLabel.text = @"Ad loaded fail";
+    
 }
 
 /// Tells the delegate that an interstitial did Exposed.
@@ -109,14 +110,5 @@
     self.statusLabel.text = @"Ad Click";
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

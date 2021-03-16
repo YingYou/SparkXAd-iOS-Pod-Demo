@@ -12,8 +12,6 @@
 @interface NativeAdViewController ()<SparkXAdNativeExpressAdDelegate>
 @property (nonatomic, strong) UILabel *statusLabel;
 
-@property (nonatomic ,strong) UIView *bannerView;
-
 @property (nonatomic ,strong) UIView *nativeView;
 
 @property (strong, nonatomic) SparkXNativeExpressAd *nativeAd;
@@ -24,7 +22,7 @@
 
 - (UIView *)nativeView {
     if (!_nativeView) {
-        _nativeView = [[UIView alloc]initWithFrame:CGRectMake(0, 130, [UIScreen mainScreen].bounds.size.width - 0, ([UIScreen mainScreen].bounds.size.width - 0)*0.3)];
+        _nativeView = [[UIView alloc]initWithFrame:CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width - 0, ([UIScreen mainScreen].bounds.size.width - 0)*0.3)];
         [self.view addSubview:_nativeView];
     }
     return _nativeView;
@@ -60,9 +58,31 @@
     [self.view addSubview:loadNativeAd];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[loadNativeAd]-170-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:NSDictionaryOfVariableBindings(loadNativeAd)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_statusLabel]-20-[loadNativeAd(40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusLabel,loadNativeAd)]];
+    
+    UIButton *removeNativeAd = [UIButton buttonWithType:UIButtonTypeSystem];
+    removeNativeAd.layer.borderWidth = 0.5;
+    removeNativeAd.layer.cornerRadius = 8;
+    removeNativeAd.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    removeNativeAd.translatesAutoresizingMaskIntoConstraints = NO;
+    [removeNativeAd addTarget:self action:@selector(removeNativeAd:) forControlEvents:UIControlEventTouchUpInside];
+    [removeNativeAd setTitle:@"removeNativeAd" forState:UIControlStateNormal];
+    [removeNativeAd setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.view addSubview:removeNativeAd];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[removeNativeAd]-170-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:NSDictionaryOfVariableBindings(removeNativeAd)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[loadNativeAd]-20-[removeNativeAd(40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(loadNativeAd,removeNativeAd)]];
+}
+
+- (void)removeNativeAd:(id)sender {
+    for (SparkXNativeExpressAdView *view in self.nativeView.subviews) {
+        if ([view isKindOfClass:[SparkXNativeExpressAdView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    
 }
 
 - (void)loadNativeAd:(id)sender {
+    
     self.nativeAd = [[SparkXNativeExpressAd alloc]initWithPlacementId:@"546FF24D-08C6-91AB-FF0F-9C930521E406-4" adSize:self.nativeView.frame.size];
     self.nativeAd.delegate = self;
     [self.nativeAd loadAd];

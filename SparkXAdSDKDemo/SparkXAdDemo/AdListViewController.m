@@ -22,11 +22,11 @@
 {
     if (!_listArray) {
         _listArray = [NSMutableArray array];
-        [_listArray addObject:@{Title:@"NativeAd",ClassTitle:@"NativeAdViewController"}];
-        [_listArray addObject:@{Title:@"SplashAd",ClassTitle:@"SplashAdViewController"}];
-        [_listArray addObject:@{Title:@"BannerAd",ClassTitle:@"BannerAdViewController"}];
+        [_listArray addObject:@{Title:@"Native",ClassTitle:@"NativeAdViewController"}];
+        [_listArray addObject:@{Title:@"Splash",ClassTitle:@"SplashAdViewController"}];
+        [_listArray addObject:@{Title:@"Banner",ClassTitle:@"BannerAdViewController"}];
 
-        [_listArray addObject:@{Title:@"InterstitialAd",ClassTitle:@"InterstitialAdViewController"}];
+        [_listArray addObject:@{Title:@"Interstitial",ClassTitle:@"InterstitialAdViewController"}];
     }
     return _listArray;
 }

@@ -40,6 +40,12 @@ DerivedData/
 SparkXAdSDKDemo/Podfile.lock
 SparkXAdSDKDemo/Pods
 SparkXAdSDKDemo/SparkXAdDemo.xcworkspace
+
+SparkXAdDemo-Swift/Podfile.lock
+SparkXAdDemo-Swift/Pods
+SparkXAdDemo-Swift/SparkXAdDemo_Swift.xcworkspace
+
+
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
  *.xcworkspace

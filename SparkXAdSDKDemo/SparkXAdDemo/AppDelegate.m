@@ -9,6 +9,7 @@
 #import "AdListViewController.h"
 #import <SparkXAdSDK/SparkXAdSplashAd.h>
 #import <SparkXAdSDK/SparkXAdApi.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
 @interface AppDelegate ()<SparkXAdSplashAdDelegate>
 
 @property (nonatomic ,strong) SparkXAdSplashAd * splashAd;
@@ -21,8 +22,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [SparkXAdApi initWithSparkXAd:@"546FF24D-08C6-91AB-FF0F-9C930521E406"];
-    [SparkXAdApi addTest:YES];
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            [SparkXAdApi initWithSparkXAd:@"546FF24D-08C6-91AB-FF0F-9C930521E406"];
+                   //to do something，like preloading
+        }];
+    } else {
+        // Fallback on earlier versions
+        [SparkXAdApi initWithSparkXAd:@"546FF24D-08C6-91AB-FF0F-9C930521E406"];
+               //to do something，like preloading
+    }
+    [SparkXAdApi setLogEnabled:YES];
     [SparkXAdApi setAdvertiserTrackingEnabled:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

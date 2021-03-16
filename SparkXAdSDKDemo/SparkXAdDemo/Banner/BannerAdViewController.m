@@ -8,48 +8,16 @@
 
 #import "BannerAdViewController.h"
 #import <SparkXAdSDK/SparkXAdBannerAdView.h>
-#import <SparkXAdSDK/UIView+SXAdd.h>
 
 @interface BannerAdViewController ()<SparkXAdBannerAdDelegate>
 
 @property (nonatomic, strong) UILabel *statusLabel;
-
-@property (nonatomic ,strong) UIView *bannerView;
 
 @property (nonatomic ,strong) SparkXAdBannerAdView *adView;
 
 @end
 
 @implementation BannerAdViewController
-
-- (UIView *)bannerView {
-    if (!_bannerView) {
-        UIWindow *window = nil;
-        if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
-           window = [[UIApplication sharedApplication].delegate window];
-        }
-        if (![window isKindOfClass:[UIView class]]) {
-           window = [UIApplication sharedApplication].keyWindow;
-        }
-        if (!window) {
-           window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-        }
-        
-        CGFloat bottom = 0.0;
-        if (@available(iOS 11.0, *)) {
-           bottom = window.safeAreaInsets.bottom;
-        } else {
-           // Fallback on earlier versions
-        }
-        
-        CGSize size = CGSizeMake(320, 50);
-        
-        _bannerView = [[UIView alloc]init];
-        _bannerView.frame = CGRectMake((self.view.frame.size.width-size.width)/2.0, self.view.frame.size.height-size.height-bottom - 100, size.width, size.height);
-        [self.view addSubview:_bannerView];
-    }
-    return _bannerView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,6 +103,13 @@
 //@"YOUR_PLACEMENT_ID"  ca-app-pub-3940256099942544/2934735716
 
 - (void)showBannerWithAdSize:(SXAdSize)size rect:(CGRect)rect{
+    /***remove banner*/
+    for (SparkXAdBannerAdView *view in self.view.subviews) {
+        if ([view isKindOfClass:[SparkXAdBannerAdView class]]) {
+            [view removeFromSuperview];
+        }
+        
+    }
     
     self.adView = [[SparkXAdBannerAdView alloc]initWithPlacementID:@"546FF24D-08C6-91AB-FF0F-9C930521E406-1" adSize:size rootViewController:self];
     self.adView.delegate = self;
@@ -143,8 +118,6 @@
     [self.view addSubview:self.adView];
     
     [self.adView loadAdAndShow];
-//    [SparkXAdBannerAdManager instance].delegate = self;
-//    [[SparkXAdBannerAdManager instance]showAdFromRootView:self.bannerView rootViewController:self withSXAdSize:kSXAdSize320x50];
     self.statusLabel.text = @"Loading......";
 }
 

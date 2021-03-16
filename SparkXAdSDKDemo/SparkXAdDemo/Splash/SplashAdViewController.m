@@ -60,9 +60,6 @@
     self.splashAd.delegate = self;
     [self.splashAd showAdFromRootViewController:appdelegate.window.rootViewController withBottomView:nil];
     
-//    [SparkXAdSplashAdManager instance].delegate = self;
-   
-//    [[SparkXAdSplashAdManager instance]showAdFromRootViewController:appdelegate.window.rootViewController withBottomView:nil];
     self.statusLabel.text = @"Loading......";
 }
 
@@ -71,50 +68,52 @@
 /**
  *  开屏广告成功展示
  */
-- (void)splashAdSuccessPresentScreen {
+- (void)splashAdSuccessPresentScreen:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告素材加载成功
  */
-- (void)splashAdDidLoad {
+- (void)splashAdDidLoad:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告展示失败
  */
-- (void)splashAdFailToPresentWithError:(NSError *)error {
+- (void)splashAdFailToPresent:(SparkXAdSplashAd *)splashAd withError:(NSError *)error{
     NSLog(@"%s", __FUNCTION__);
+    self.statusLabel.text = @"ad error";
 }
 
 /**
  *  开屏广告曝光回调
  */
-- (void)splashAdExposured {
+- (void)splashAdExposured:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告点击回调
  */
-- (void)splashAdClicked {
+- (void)splashAdClicked:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告将要关闭回调
  */
-- (void)splashAdClosed {
+- (void)splashAdClosed:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
+    self.statusLabel.text = @"ad close";
 }
 
 
 /**
  *  开屏广告点击以后弹出全屏广告页
  */
-- (void)splashAdDidPresentFullScreenModal {
+- (void)splashAdDidPresentFullScreenModal:(SparkXAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
