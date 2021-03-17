@@ -8,7 +8,7 @@ target 'SparkXAdDemo' do
 #  use_frameworks!
 
 #pod 'SparkXAdSDK'
-pod 'SparkXAdSDK',:path => '../../SparkXAdSDK'
+pod 'YieldzoneAdSDK',:path => '../../YieldzoneAdSDK'
   target 'SparkXAdDemoTests' do
     inherit! :search_paths
     # Pods for testing

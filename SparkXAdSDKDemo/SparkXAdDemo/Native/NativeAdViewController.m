@@ -1,20 +1,20 @@
 //
 //  NativeAdViewController.m
-//  SparkXAdDemo
+//  YieldzoneAdDemo
 //
 //  Created by Wei yang on 2021/2/4.
-//  Copyright © 2021 SparkX. All rights reserved.
+//  Copyright © 2021 Yieldzone. All rights reserved.
 //
 
 #import "NativeAdViewController.h"
-#import <SparkXAdSDK/SparkXNativeExpressAd.h>
+#import <YieldzoneAdSDK/YieldzoneNativeExpressAd.h>
 
-@interface NativeAdViewController ()<SparkXAdNativeExpressAdDelegate>
+@interface NativeAdViewController ()<YieldzoneAdNativeExpressAdDelegate>
 @property (nonatomic, strong) UILabel *statusLabel;
 
 @property (nonatomic ,strong) UIView *nativeView;
 
-@property (strong, nonatomic) SparkXNativeExpressAd *nativeAd;
+@property (strong, nonatomic) YieldzoneNativeExpressAd *nativeAd;
 
 @end
 
@@ -73,8 +73,8 @@
 }
 
 - (void)removeNativeAd:(id)sender {
-    for (SparkXNativeExpressAdView *view in self.nativeView.subviews) {
-        if ([view isKindOfClass:[SparkXNativeExpressAdView class]]) {
+    for (YieldzoneNativeExpressAdView *view in self.nativeView.subviews) {
+        if ([view isKindOfClass:[YieldzoneNativeExpressAdView class]]) {
             [view removeFromSuperview];
         }
     }
@@ -83,12 +83,12 @@
 
 - (void)loadNativeAd:(id)sender {
     
-    self.nativeAd = [[SparkXNativeExpressAd alloc]initWithPlacementId:@"546FF24D-08C6-91AB-FF0F-9C930521E406-4" adSize:self.nativeView.frame.size];
+    self.nativeAd = [[YieldzoneNativeExpressAd alloc]initWithPlacementId:@"546FF24D-08C6-91AB-FF0F-9C930521E406-4" adSize:self.nativeView.frame.size];
     self.nativeAd.delegate = self;
     [self.nativeAd loadAd];
     
-//    [SparkXAdNativeExpressAdManager instance].delegate = self;
-//    [[SparkXAdNativeExpressAdManager instance]showAdFromRootView:self.nativeView rootViewController:self];
+//    [YieldzoneAdNativeExpressAdManager instance].delegate = self;
+//    [[YieldzoneAdNativeExpressAdManager instance]showAdFromRootView:self.nativeView rootViewController:self];
     self.statusLabel.text = @"Loading......";
 }
 
@@ -97,9 +97,9 @@
 /**
  * 拉取原生模板广告成功
  */
-- (void)nativeExpressAdSuccessToLoad:(SparkXNativeExpressAd *)nativeExpressAd views:(NSArray<__kindof SparkXNativeExpressAdView *> *)views {
+- (void)nativeExpressAdSuccessToLoad:(YieldzoneNativeExpressAd *)nativeExpressAd views:(NSArray<__kindof YieldzoneNativeExpressAdView *> *)views {
     self.statusLabel.text = @"Ad loaded Success";
-    SparkXNativeExpressAdView *view = views.firstObject;
+    YieldzoneNativeExpressAdView *view = views.firstObject;
     view.controller = self;
     [view render];
     [self.nativeView addSubview:view];
@@ -111,7 +111,7 @@
 /**
  * 拉取原生模板广告失败
  */
-- (void)nativeExpressAdFailToLoad:(SparkXNativeExpressAd *)nativeExpressAd error:(NSError *)error {
+- (void)nativeExpressAdFailToLoad:(YieldzoneNativeExpressAd *)nativeExpressAd error:(NSError *)error {
     self.statusLabel.text = @"Ad loaded fail";
 }
 
@@ -119,14 +119,14 @@
 /**
  * 原生模板广告渲染成功, 此时的 nativeExpressAdView.size.height 根据 size.width 完成了动态更新。
  */
-- (void)nativeExpressAdViewRenderSuccess:(SparkXNativeExpressAdView *)nativeExpressAdView {
+- (void)nativeExpressAdViewRenderSuccess:(YieldzoneNativeExpressAdView *)nativeExpressAdView {
     self.statusLabel.text = @"Ad loaded render success";
 }
 
 /**
  * 原生模板广告渲染失败
  */
-- (void)nativeExpressAdViewRenderFail:(SparkXNativeExpressAdView *)nativeExpressAdView {
+- (void)nativeExpressAdViewRenderFail:(YieldzoneNativeExpressAdView *)nativeExpressAdView {
     self.statusLabel.text = @"Ad loaded render fail";
 }
 
@@ -134,7 +134,7 @@
 /**
  * 原生模板广告曝光回调
  */
-- (void)nativeExpressAdViewExposure:(SparkXNativeExpressAdView *)nativeExpressAdView {
+- (void)nativeExpressAdViewExposure:(YieldzoneNativeExpressAdView *)nativeExpressAdView {
     self.statusLabel.text = @"Ad loaded exposure";
 }
 
@@ -142,11 +142,11 @@
 /**
  * 原生模板广告被关闭
  */
-- (void)nativeExpressAdViewClosed:(SparkXNativeExpressAdView *)nativeExpressAdView {
+- (void)nativeExpressAdViewClosed:(YieldzoneNativeExpressAdView *)nativeExpressAdView {
     
 }
 
-- (void)nativeExpressAdWillLeaveApplication:(SparkXNativeExpressAdView *)nativeExpressAdView {
+- (void)nativeExpressAdWillLeaveApplication:(YieldzoneNativeExpressAdView *)nativeExpressAdView {
     
 }
 

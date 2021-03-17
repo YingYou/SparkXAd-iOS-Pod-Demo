@@ -1,18 +1,18 @@
 //
 //  InterstitialAdViewController.m
-//  SparkXAdDemo
+//  YieldzoneAdDemo
 //
 //  Created by Wei yang on 2021/2/4.
-//  Copyright © 2021 SparkX. All rights reserved.
+//  Copyright © 2021 Yieldzone. All rights reserved.
 //
 
 #import "InterstitialAdViewController.h"
-#import <SparkXAdSDK/SparkXAdInterstitialAd.h>
+#import <YieldzoneAdSDK/YieldzoneAdInterstitialAd.h>
 
-@interface InterstitialAdViewController ()<SparkXAdInterstitialAdDelegate>
+@interface InterstitialAdViewController ()<YieldzoneAdInterstitialAdDelegate>
 @property (nonatomic, strong) UILabel *statusLabel;
 
-@property (nonatomic, strong) SparkXAdInterstitialAd *interstitial;
+@property (nonatomic, strong) YieldzoneAdInterstitialAd *interstitial;
 
 @end
 
@@ -65,13 +65,13 @@
 
 //@"ca-app-pub-3940256099942544/4411468910"  @"YOUR_PLACEMENT_ID"
 - (void)loadInterstitialAd:(id)sender {
-//    [SparkXAdInterstitialAdManager instance].delegate = self;
-//    [[SparkXAdInterstitialAdManager instance]showAdFromRootViewController:self];
+//    [YieldzoneAdInterstitialAdManager instance].delegate = self;
+//    [[YieldzoneAdInterstitialAdManager instance]showAdFromRootViewController:self];
     self.statusLabel.text = @"Loading......";
     if (self.interstitial) {
         self.interstitial.delegate = nil;
     }
-    self.interstitial = [[SparkXAdInterstitialAd alloc]initWithPlacementID:@"546FF24D-08C6-91AB-FF0F-9C930521E406-2" adSize:SXAdSizeFromCGSize(self.view.frame.size)];
+    self.interstitial = [[YieldzoneAdInterstitialAd alloc]initWithPlacementID:@"546FF24D-08C6-91AB-FF0F-9C930521E406-2" adSize:SXAdSizeFromCGSize(self.view.frame.size)];
     self.interstitial.delegate = self;
     [self.interstitial loadAd];
     
@@ -84,29 +84,29 @@
     
 }
 
-#pragma mark---SparkXAdInterstitialAdDelegate
+#pragma mark---YieldzoneAdInterstitialAdDelegate
 
 /// Tells the delegate an ad request succeeded.
-- (void)interstitialDidReceiveAd:(SparkXAdInterstitialAd *)interstitialAd {
+- (void)interstitialDidReceiveAd:(YieldzoneAdInterstitialAd *)interstitialAd {
     self.statusLabel.text = @"Ad loaded Success";
 }
 
 /// Tells the delegate an ad request failed.
-- (void)didFailToReceiveAdWithError:(SparkXAdInterstitialAd *)interstitialAd error:(NSError *)error {
+- (void)didFailToReceiveAdWithError:(YieldzoneAdInterstitialAd *)interstitialAd error:(NSError *)error {
     self.statusLabel.text = @"Ad loaded fail";
     
 }
 
 /// Tells the delegate that an interstitial did Exposed.
-- (void)interstitialAdDidExposed:(SparkXAdInterstitialAd *)interstitialAd {
+- (void)interstitialAdDidExposed:(YieldzoneAdInterstitialAd *)interstitialAd {
     self.statusLabel.text = @"Ad Exposed";
 }
 
-- (void)interstitialAdDidClose:(SparkXAdInterstitialAd *)interstitialAd {
+- (void)interstitialAdDidClose:(YieldzoneAdInterstitialAd *)interstitialAd {
     self.statusLabel.text = @"Ad Close";
 }
 
-- (void)interstitialAdDidClick:(SparkXAdInterstitialAd *)interstitialAd {
+- (void)interstitialAdDidClick:(YieldzoneAdInterstitialAd *)interstitialAd {
     self.statusLabel.text = @"Ad Click";
 }
 

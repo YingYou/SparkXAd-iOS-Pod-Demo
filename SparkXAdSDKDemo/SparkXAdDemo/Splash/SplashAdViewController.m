@@ -1,18 +1,18 @@
 //
 //  SplashAdViewController.m
-//  SparkXAdDemo
+//  YieldzoneAdDemo
 //
 //  Created by Wei yang on 2021/2/2.
-//  Copyright © 2021 SparkX. All rights reserved.
+//  Copyright © 2021 Yieldzone. All rights reserved.
 //
 
 #import "SplashAdViewController.h"
-#import <SparkXAdSDK/SparkXAdSplashAd.h>
+#import <YieldzoneAdSDK/YieldzoneAdSplashAd.h>
 #import "AppDelegate.h"
-@interface SplashAdViewController ()<SparkXAdSplashAdDelegate>
+@interface SplashAdViewController ()<YieldzoneAdSplashAdDelegate>
 @property (nonatomic, strong) UILabel *statusLabel;
 
-@property (nonatomic ,strong) SparkXAdSplashAd * splashAd;
+@property (nonatomic ,strong) YieldzoneAdSplashAd * splashAd;
 
 @end
 
@@ -56,33 +56,33 @@
     
     AppDelegate *appdelegate = (AppDelegate  *)[UIApplication sharedApplication].delegate;
     
-    self.splashAd = [[SparkXAdSplashAd alloc]initWithPlacementId:@"546FF24D-08C6-91AB-FF0F-9C930521E406-3"];
+    self.splashAd = [[YieldzoneAdSplashAd alloc]initWithPlacementId:@"546FF24D-08C6-91AB-FF0F-9C930521E406-3"];
     self.splashAd.delegate = self;
     [self.splashAd showAdFromRootViewController:appdelegate.window.rootViewController withBottomView:nil];
     
     self.statusLabel.text = @"Loading......";
 }
 
-#pragma mark----SparkXAdSplashAdDelegate
+#pragma mark----YieldzoneAdSplashAdDelegate
 
 /**
  *  开屏广告成功展示
  */
-- (void)splashAdSuccessPresentScreen:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdSuccessPresentScreen:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告素材加载成功
  */
-- (void)splashAdDidLoad:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdDidLoad:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告展示失败
  */
-- (void)splashAdFailToPresent:(SparkXAdSplashAd *)splashAd withError:(NSError *)error{
+- (void)splashAdFailToPresent:(YieldzoneAdSplashAd *)splashAd withError:(NSError *)error{
     NSLog(@"%s", __FUNCTION__);
     self.statusLabel.text = @"ad error";
 }
@@ -90,21 +90,21 @@
 /**
  *  开屏广告曝光回调
  */
-- (void)splashAdExposured:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdExposured:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告点击回调
  */
-- (void)splashAdClicked:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdClicked:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 
 /**
  *  开屏广告将要关闭回调
  */
-- (void)splashAdClosed:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdClosed:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
     self.statusLabel.text = @"ad close";
 }
@@ -113,7 +113,7 @@
 /**
  *  开屏广告点击以后弹出全屏广告页
  */
-- (void)splashAdDidPresentFullScreenModal:(SparkXAdSplashAd *)splashAd {
+- (void)splashAdDidPresentFullScreenModal:(YieldzoneAdSplashAd *)splashAd {
     NSLog(@"%s", __FUNCTION__);
 }
 

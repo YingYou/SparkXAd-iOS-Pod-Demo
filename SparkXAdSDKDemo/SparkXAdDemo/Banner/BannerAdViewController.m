@@ -1,19 +1,19 @@
 //
 //  BannerAdViewController.m
-//  SparkXAdDemo
+//  YieldzoneAdDemo
 //
 //  Created by Wei yang on 2021/2/2.
-//  Copyright © 2021 SparkX. All rights reserved.
+//  Copyright © 2021 Yieldzone. All rights reserved.
 //
 
 #import "BannerAdViewController.h"
-#import <SparkXAdSDK/SparkXAdBannerAdView.h>
+#import <YieldzoneAdSDK/YieldzoneAdBannerAdView.h>
 
-@interface BannerAdViewController ()<SparkXAdBannerAdDelegate>
+@interface BannerAdViewController ()<YieldzoneAdBannerAdDelegate>
 
 @property (nonatomic, strong) UILabel *statusLabel;
 
-@property (nonatomic ,strong) SparkXAdBannerAdView *adView;
+@property (nonatomic ,strong) YieldzoneAdBannerAdView *adView;
 
 @end
 
@@ -104,14 +104,14 @@
 
 - (void)showBannerWithAdSize:(SXAdSize)size rect:(CGRect)rect{
     /***remove banner*/
-    for (SparkXAdBannerAdView *view in self.view.subviews) {
-        if ([view isKindOfClass:[SparkXAdBannerAdView class]]) {
+    for (YieldzoneAdBannerAdView *view in self.view.subviews) {
+        if ([view isKindOfClass:[YieldzoneAdBannerAdView class]]) {
             [view removeFromSuperview];
         }
         
     }
     
-    self.adView = [[SparkXAdBannerAdView alloc]initWithPlacementID:@"546FF24D-08C6-91AB-FF0F-9C930521E406-1" adSize:size rootViewController:self];
+    self.adView = [[YieldzoneAdBannerAdView alloc]initWithPlacementID:@"546FF24D-08C6-91AB-FF0F-9C930521E406-1" adSize:size rootViewController:self];
     self.adView.delegate = self;
     self.adView.autoSwitchInterval = 30;
     self.adView.frame = rect;
@@ -149,13 +149,13 @@
     [self showBannerWithAdSize:SXAdSizeFromCGSize(CGSizeMake(500, 100)) rect:rect];
 }
 
-#pragma mark----SparkXAdBannerAdDelegate---
+#pragma mark----YieldzoneAdBannerAdDelegate---
 
 /**
  *  请求广告条数据成功后调用
  *  当接收服务器返回的广告数据成功后调用该函数
  */
-- (void)bannerViewDidLoad:(SparkXAdBannerAdView *)bannerView {
+- (void)bannerViewDidLoad:(YieldzoneAdBannerAdView *)bannerView {
     self.statusLabel.text = @"Ad loaded";
 }
 
@@ -163,35 +163,35 @@
  *  请求广告条数据失败后调用
  *  当接收服务器返回的广告数据失败后调用该函数
  */
-- (void)bannerViewFailedToLoad:(SparkXAdBannerAdView *)bannerView error:(NSError *)error{
+- (void)bannerViewFailedToLoad:(YieldzoneAdBannerAdView *)bannerView error:(NSError *)error{
     self.statusLabel.text = @"Ad loaded fail";
 }
 
 /**
  *  曝光回调
  */
-- (void)bannerViewWillExpose:(SparkXAdBannerAdView *)bannerView {
+- (void)bannerViewWillExpose:(YieldzoneAdBannerAdView *)bannerView {
     self.statusLabel.text = @"Ad Expose";
 }
 
 /**
  *  点击回调
  */
-- (void)bannerViewClicked:(SparkXAdBannerAdView *)bannerView {
+- (void)bannerViewClicked:(YieldzoneAdBannerAdView *)bannerView {
     self.statusLabel.text = @"Ad Click";
 }
 
 /**
  * 广告点击以后弹出全屏广告页完毕
  */
-- (void)bannerViewDidPresentFullScreenModal:(SparkXAdBannerAdView *)bannerView {
+- (void)bannerViewDidPresentFullScreenModal:(YieldzoneAdBannerAdView *)bannerView {
     
 }
 
 /**
  *  全屏广告页已经被关闭
  */
-- (void)bannerViewDidDismissFullScreenModal:(SparkXAdBannerAdView *)bannerView {
+- (void)bannerViewDidDismissFullScreenModal:(YieldzoneAdBannerAdView *)bannerView {
     
 }
 
